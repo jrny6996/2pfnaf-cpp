@@ -1,21 +1,20 @@
 #pragma once
+#include "base_scenes.hpp"
 #include "raylib.h"
 #include <iostream>
 #include <string>
 #include <vector>
-#include "base_scenes.hpp"
 
 
 class MainScene : public ThreeDScene {
 
 
-    void update () override {
-
-        return;
-    }
     void listen (Scene*& curr_scene) override {
+
+
         this->mouse_position = GetMousePosition ();
-        DrawCircleV (this->mouse_position, 12, BLUE);
+
+        UpdateCamera (&this->camera, CAMERA_FREE);
 
         return;
     }
