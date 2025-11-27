@@ -1,5 +1,6 @@
 #pragma once
 #include "base_scenes.hpp"
+#include "entity.hpp"
 #include "raylib.h"
 #include <iostream>
 #include <string>
@@ -7,7 +8,6 @@
 
 
 class MainScene : public ThreeDScene {
-
 
     void listen (Scene*& curr_scene) override {
 
@@ -18,9 +18,17 @@ class MainScene : public ThreeDScene {
 
         return;
     }
-    void lock_cursor () {
-        return;
+
+    void update() override{
+           BeginMode3D (this->camera);
+        DrawCube (this->scene_objects[0], 2.0f, 2.0f, 2.0f, RED);
+        DrawCubeWires (this->scene_objects[0], 2.0f, 2.0f, 2.0f, MAROON);
+
+        DrawGrid (10, 1.0f);
+
+        EndMode3D ();
     }
+  
 };
 
 
@@ -48,6 +56,7 @@ class StartMenu : public Scene {
         DrawText (start_txt, this->start_btn_pos[0] + 8, this->start_btn_pos[1], 64, BLACK);
         DrawCircleV (this->mouse_position, 12, BLUE);
     };
+
     void listen (Scene*& curr_scene) override {
         this->mouse_position = GetMousePosition ();
         // std::cout << this->mouse_position.x << "," << this->mouse_position.y << "\n"

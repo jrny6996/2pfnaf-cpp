@@ -11,11 +11,10 @@ class Scene {
     int screen_width;
     int screen_height;
     Vector2 mouse_position;
-    Scene () {};
+
     virtual void update () {
         return;
     };
-
     virtual void listen (Scene*& curr_scene) {
         return;
     }
@@ -23,20 +22,21 @@ class Scene {
         return;
     }
 };
+
 class ThreeDScene : public Scene {
     public:
     std::vector<Vector3> scene_objects;
     Camera3D camera = { 0 };
-
+   
     void init () override {
         Vector3 box_vector{};
         DisableCursor ();
 
-        this->camera.position = (Vector3){ 0.0f, 10.0f, 10.0f }; // Camera position
+        this->camera.position = (Vector3){ 5.0f, 1.0f, 1.0f }; // Camera position
         this->camera.target = (Vector3){ 0.0f, 0.0f, 0.0f }; // Camera looking at point
         this->camera.up =
         (Vector3){ 0.0f, 1.0f, 0.0f }; // Camera up vector (rotation towards target)
-        this->camera.fovy       = 45.0f; // Camera field-of-view Y
+        this->camera.fovy       = 65.0f; // Camera field-of-view Y
         this->camera.projection = CAMERA_PERSPECTIVE;
 
 
